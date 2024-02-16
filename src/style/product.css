@@ -1,0 +1,41 @@
+.product {
+  display: grid;
+  padding: 20px;
+  height: 360px;
+  justify-items: center;
+  align-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+
+.product > .image {
+  width: min(100%, 300px);
+  margin: 0 auto;
+}
+
+.product > .base {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.product .title {
+  text-align: center;
+  font-size: 32px;
+  text-decoration: none;
+}
+
+.product .price {
+  text-align: center;
+  font-size: 32px;
+}
+
+.product .content {
+  text-align: start;
+  font-size: 24px;
+}
+
+.product .content:empty {
+  display: none;
+}

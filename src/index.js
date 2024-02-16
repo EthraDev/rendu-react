@@ -1,41 +1,56 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ProductsScreen from './pages/ProductsScreen';
-import NotFoundScreen from './pages/NotFoundScreen';
-import ProductScreen from './pages/ProductScreen';
-import HomeScreen from './pages/HomeScreen';
-import App from './App';
-import { Provider } from 'react-redux';
-import { store } from './store';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductsScreen from "./pages/ProductsScreen";
+import NotFoundScreen from "./pages/NotFoundScreen";
+import ProductScreen from "./pages/ProductScreen";
+import HomeScreen from "./pages/HomeScreen";
+import App from "./App";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { AppProvider } from "./AppProvider";
+import Header from "./components/header";
+import CartScreen from "./pages/CartScreen";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <HomeScreen />,
   },
   {
-    path: '/products',
-    element: <ProductsScreen />
+    path: "/products",
+    element: <ProductsScreen />,
   },
   {
-    path: '/products/:productId',
-    element: <ProductScreen />
+    path: "/products/:productId",
+    element: <ProductScreen />,
   },
   {
-    path: '*',
-    element: <NotFoundScreen />
-  }
+    path: "/cart",
+    element: <CartScreen />,
+  },
+  {
+    path: "/products/:productId/comments",
+    element: <ProductScreen />,
+  },
+  {
+    path: "*",
+    element: <NotFoundScreen />,
+  },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    {/* Ajout de l'appProvider => Context central */}
+    <AppProvider>
+      <Provider store={store}>
+        <Header />
+        <RouterProvider router={router} />
+      </Provider>
+    </AppProvider>
   </React.StrictMode>
 );
 
